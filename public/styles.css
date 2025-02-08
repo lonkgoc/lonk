@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.nav-links i {
+    font-size: 1.2rem;
+}
+
+section {
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.main-title {
+    font-size: 60px;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* New class for secondary titles */
+.secondary-title {
+    font-size: 36px;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.section-content {
+    font-size: 24px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.product:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.product-logo img {
+    max-width: 1000px;
+}
+
+.product-description {
+    flex: 1;
+}
+
+.ceo-info {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    margin-right: 2rem;
+    color: #007bff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 24px;
+}
+
+.reach-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.social-links-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-links-column a {
+    color: #007bff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 24px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+input, textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+button {
+    padding: 1rem 2rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 18px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 40px;
+    }
+    
+    .secondary-title {
+        font-size: 28px;
+    }
+    
+    .section-content {
+        font-size: 20px;
+    }
+    
+    .product {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .product:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .reach-container {
+        grid-template-columns: 1fr;
+    }
+}
