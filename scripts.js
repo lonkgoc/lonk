@@ -1,19 +1,3 @@
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    });
-});
-
 // Contact form submission
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -31,8 +15,8 @@ document.getElementById('contactForm').addEventListener('submit', async function
             formData.append('file', fileUpload);
         }
         
-        // Replace with your Render backend URL
-        const response = await fetch('https://lonk.onrender.com', {
+        // Correct Render app URL
+        const response = await fetch('https://lonk.onrender.com/api/submit-form', {
             method: 'POST',
             body: formData
         });
