@@ -31,8 +31,8 @@ document.getElementById('contactForm').addEventListener('submit', async function
             formData.append('file', fileUpload);
         }
         
-        // Replace with your Azure backend URL
-        const response = await fetch('https://your-azure-app-name.azurewebsites.net/api/submit-form', {
+        // Replace with your Render backend URL
+        const response = await fetch('https://lonk.onrender.com', {
             method: 'POST',
             body: formData
         });
