@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Serve static files (if needed)
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 // Test route
 app.get('/test', (req, res) => {
