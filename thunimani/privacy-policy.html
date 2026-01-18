@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy - Thunimani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;600&family=DotGothic16&family=Bungee+Shade&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+  <header class="navbar">
+    <div class="logo" onclick="location.href='index.html'">Thunimani</div>
+    <nav>
+      <button class="nav-btn"><i class="fa-solid fa-shopping-bag"></i> Shop</button>
+      <button class="nav-btn"><i class="fa-solid fa-user"></i> Profile</button>
+      <button id="themeToggle" class="theme-btn"><i class="fa-solid fa-moon"></i></button>
+    </nav>
+  </header>
+
+  <section class="legal-content">
+    <h1 class="glitch-font">Privacy Policy</h1>
+    <div class="legal-card">
+      <h2>1. Information We Collect</h2>
+      <p>We collect personal information like name, email, shipping address, and payment details when you place orders or create an account. We also collect browsing data via cookies to improve your experience.</p>
+
+      <h2>2. How We Use Your Data</h2>
+      <p>Your data is used for order processing, shipping, customer support, marketing (with consent), and analytics to improve our services. We never sell your data to third parties.</p>
+
+      <h2>3. Data Security</h2>
+      <p>We use SSL encryption, secure payment gateways, and regular security audits to protect your data. However, no online transmission is 100% secure.</p>
+
+      <h2>4. Cookies & Tracking</h2>
+      <p>We use essential cookies for site functionality and analytics cookies (Google Analytics) for performance tracking. You can manage cookie preferences in your browser settings.</p>
+
+      <h2>5. Your Rights</h2>
+      <p>You can access, update, or delete your data by contacting support@thunimani.in. You can also opt-out of marketing emails anytime.</p>
+
+      <p><strong>Last Updated:</strong> January 10, 2026</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    // Same theme toggle functionality
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("dark");
+      document.getElementById("themeToggle").innerHTML = document.body.classList.contains("dark") 
+        ? '<i class="fa-solid fa-sun"></i>' 
+        : '<i class="fa-solid fa-moon"></i>';
+    };
+  </script>
+</body>
+</html>

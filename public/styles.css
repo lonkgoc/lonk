@@ -1,208 +1,841 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;600&family=DotGothic16&family=Bungee+Shade&family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+    --bg: #f8f9fa;
+    --text: #0b0b0b;
+    --muted: #555;
+    --glass: rgba(0, 0, 0, 0.03);
+    --accent: #ff2a6d;
+    --secondary: #1a1a2e;
+    --crazy-bg: linear-gradient(135deg, #ffe66d, #ff2a6d);
+    --timeline-line: #ff2a6d;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+/* Crazy Fonts Classes */
+.crazy-font {
+    font-family: 'Bungee Shade', cursive;
+    color: var(--accent);
+    text-shadow: 2px 2px 4px var(--secondary);
+}
+
+.glitch-font {
+    font-family: 'Press Start 2P', cursive;
+    animation: glitch 1s infinite;
+}
+
+.pixel-font {
+    font-family: 'VT323', monospace;
+    letter-spacing: 2px;
+}
+
+.bungee-font {
+    font-family: 'Bungee Shade', cursive;
+}
+
+.vt-font {
+    font-family: 'VT323', monospace;
+}
+
+.dot-matrix {
+    font-family: 'DotGothic16', sans-serif;
+}
+
+.glyph-text {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--muted);
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(2px, -2px);
+    }
+
+    60% {
+        transform: translate(-2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ============================================ */
+/* HEADER - Compact Like Thunimani             */
+/* ============================================ */
+
 header {
-    position: fixed;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
     top: 0;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header.hide {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--accent);
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo img {
+    height: 45px;
+    filter: brightness(1.2);
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo img {
-    height: 50px;
 }
 
 .nav-links {
     display: flex;
+    gap: 0.5rem;
     list-style: none;
-    gap: 2rem;
 }
 
 .nav-links a {
+    font-family: 'DotGothic16', sans-serif;
+    background: transparent;
+    border: 2px dotted var(--secondary);
+    margin-left: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text);
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: transform 0.2s, border-color 0.3s;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 .nav-links a:hover {
-    color: #007bff;
+    transform: scale(1.1);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-.nav-links i {
-    font-size: 1.2rem;
-}
+/* ============================================ */
+/* HERO - Matching Thunimani Exactly           */
+/* ============================================ */
 
-section {
-    padding: 40px 20px;
-    min-height: 100vh;
+.hero {
+    min-height: 90vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    background: var(--crazy-bg);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    padding: 0 10%;
+    position: relative;
 }
 
-.container {
+.hero h1 {
+    font-family: 'Bungee Shade', cursive;
+    font-size: clamp(80px, 14vw, 140px);
+    letter-spacing: -6px;
+    color: var(--accent);
+    text-shadow: 2px 2px 4px var(--secondary);
+    animation: pulse 2s infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.hero p {
+    font-family: 'DotGothic16', sans-serif;
+    margin-top: 20px;
+    font-size: 20px;
+    max-width: 800px;
+    color: var(--muted);
+}
+
+/* ============================================ */
+/* STORY / TIMELINE - Thunimani Style          */
+/* ============================================ */
+
+.story {
     max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
+    margin: 120px auto;
+    padding: 0 32px;
+    position: relative;
 }
 
-.main-title {
-    font-size: 60px;
-    margin-bottom: 1.5rem;
-    color: #333;
+.story h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--accent);
+    animation: glitch 1s infinite;
 }
 
-/* New class for secondary titles */
-.secondary-title {
-    font-size: 36px;
-    margin-bottom: 1.5rem;
-    color: #333;
+.timeline {
+    position: relative;
+    margin: 50px auto;
+    max-width: 1000px;
 }
 
-.section-content {
-    font-size: 24px;
-    color: #666;
-    line-height: 1.5;
+.timeline-line {
+    position: absolute;
+    width: 4px;
+    background: var(--timeline-line);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px rgba(255, 42, 109, 0.5);
+}
+
+.timeline-item {
+    padding: 20px 40px;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--secondary);
+    top: 32px;
+    z-index: 1;
+    transition: transform 0.3s;
+}
+
+.timeline-item.left .timeline-dot {
+    right: -10px;
+}
+
+.timeline-item.right .timeline-dot {
+    left: -10px;
+}
+
+.timeline-content {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.timeline-item:hover .timeline-content {
+    box-shadow: 0 8px 25px var(--accent);
+    transform: scale(1.05);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.5);
+}
+
+.timeline-content h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.timeline-content p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.story-date {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--secondary);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ============================================ */
+/* PRODUCTS SECTION                            */
+/* ============================================ */
+
+.products-section {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 32px;
+}
+
+.products-section h2 {
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--accent);
+    letter-spacing: 2px;
 }
 
 .product {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    padding: 2.5rem;
+    background: var(--glass);
+    border: 1px dashed var(--accent);
+    border-radius: 30px;
+    position: relative;
+    transition: all 0.4s ease;
 }
 
-.product:nth-child(even) {
+.product:hover {
+    box-shadow: 0 0 20px var(--secondary);
+}
+
+.product.reverse {
     flex-direction: row-reverse;
 }
 
-.product-logo img {
-    max-width: 1000px;
+.product-image {
+    flex: 0 0 45%;
 }
 
-.product-description {
+.product-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.product:hover .product-image img {
+    transform: scale(1.03);
+}
+
+.product-info {
     flex: 1;
 }
 
-.ceo-info {
-    max-width: 800px;
-    margin: 0 auto;
+.product-meta {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    border: 1px solid var(--secondary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.product-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.product-desc {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.cyber-btn {
+    font-family: 'DotGothic16', sans-serif;
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cyber-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.launch-tag {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border-bottom: 1px dotted var(--muted);
+}
+
+/* ============================================ */
+/* ABOUT SECTION                               */
+/* ============================================ */
+
+.about-section {
+    max-width: 1000px;
+    margin: 120px auto;
+    padding: 60px;
+    background: var(--crazy-bg);
+    border-radius: 40px;
+}
+
+.about-section h2 {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: var(--text);
+}
+
+.about-section p {
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--bg);
+}
+
+.about-section strong {
+    color: var(--text);
+}
+
+.ceo-sig {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--secondary);
+    display: block;
+    margin-top: 1rem;
 }
 
 .social-links {
+    display: flex;
+    gap: 1.5rem;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .social-links a {
-    margin-right: 2rem;
-    color: #007bff;
+    font-family: 'DotGothic16', sans-serif;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 24px;
+    color: var(--secondary);
+    transition: color 0.3s;
 }
 
-.reach-container {
+.social-links a:hover {
+    color: var(--accent);
+}
+
+/* ============================================ */
+/* REACH SECTION - Equal Height Containers     */
+/* ============================================ */
+
+.reach-section {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.connect-box,
+.contact-box {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.reach-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--accent);
 }
 
 .social-links-column {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 15px;
+    flex: 1;
 }
 
 .social-links-column a {
-    color: #007bff;
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--text);
     text-decoration: none;
+    font-size: 1rem;
+    padding: 15px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 24px;
+    gap: 12px;
 }
 
-.contact-form form {
+.social-links-column a:hover {
+    color: var(--secondary);
+    border-color: var(--secondary);
+    transform: translateX(10px);
+}
+
+.social-links-column a i {
+    font-size: 1.1rem;
+    color: var(--accent);
+    width: 20px;
+}
+
+.contact-form {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
 }
 
-input, textarea {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 18px;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: var(--bg);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--text);
+    font-family: 'DotGothic16', sans-serif;
+    border-radius: 10px;
+    font-size: 14px;
 }
 
-textarea {
-    min-height: 150px;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
 }
 
-button {
-    padding: 1rem 2rem;
-    background: #007bff;
-    color: white;
+.contact-form textarea {
+    flex: 1;
+    min-height: 120px;
+    resize: none;
+}
+
+.contact-form .cyber-btn {
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+/* ============================================ */
+/* FOOTER - With Legal Links                   */
+/* ============================================ */
+
+footer {
+    padding: 80px 60px 40px;
+    background: var(--glass);
+    margin-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer h4 {
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+footer p {
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-family: 'DotGothic16', sans-serif;
+    display: block;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+.subscribe-btn {
+    margin-top: 12px;
+    padding: 12px 24px;
+    background: var(--accent);
     border: none;
-    border-radius: 4px;
+    color: var(--bg);
     cursor: pointer;
-    transition: background 0.3s;
-    font-size: 18px;
+    border-radius: 20px;
+    font-family: 'DotGothic16', sans-serif;
+    transition: transform 0.2s;
 }
 
-button:hover {
-    background: #0056b3;
+.subscribe-btn:hover {
+    transform: scale(1.05);
 }
+
+.copyright {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Back to Top */
+#backToTop {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    border-radius: 50%;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--bg);
+    transition: transform 0.3s;
+    display: none;
+    z-index: 1000;
+}
+
+#backToTop:hover {
+    transform: rotate(360deg);
+}
+
+/* ============================================ */
+/* ANIMATIONS                                  */
+/* ============================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================ */
+/* RESPONSIVE                                  */
+/* ============================================ */
 
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 40px;
+    header {
+        padding: 10px 20px;
     }
-    
-    .secondary-title {
-        font-size: 28px;
-    }
-    
-    .section-content {
+
+    .logo {
         font-size: 20px;
     }
-    
-    .product {
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 4px 10px;
+        margin-left: 8px;
+    }
+
+    .hero h1 {
+        font-size: clamp(50px, 12vw, 100px);
+        letter-spacing: -3px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .story h2 {
+        font-size: 1rem;
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        text-align: left;
+        padding-left: 50px;
+        padding-right: 20px;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 10px;
+        right: auto;
+    }
+
+    .product,
+    .product.reverse {
         flex-direction: column;
         text-align: center;
+        gap: 2rem;
     }
-    
-    .product:nth-child(even) {
-        flex-direction: column;
+
+    .product-title {
+        font-size: 1.8rem;
     }
-    
-    .reach-container {
+
+    .reach-section {
         grid-template-columns: 1fr;
     }
+
+    .about-section {
+        margin: 60px 20px;
+        padding: 40px 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================ */
+/* LEGAL PAGES STYLES                          */
+/* ============================================ */
+
+.legal-section {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 60px 40px;
+}
+
+.legal-section h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.legal-section>.glyph-text {
+    margin-bottom: 40px;
+}
+
+.legal-content {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legal-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.legal-content h2:first-child {
+    margin-top: 0;
+}
+
+.legal-content p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.legal-content ul {
+    color: var(--muted);
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.legal-content li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.legal-content strong {
+    color: var(--text);
 }

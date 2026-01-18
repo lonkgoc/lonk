@@ -35,7 +35,8 @@ app.get('/test', (req, res) => {
 app.post('/api/submit-form', upload.single('file'), async (req, res) => {
     try {
         const { name, email, message } = req.body;
-        
+        console.log('Form data received:', { name, email, message }); // Debugging
+
         // Email options
         const mailOptions = {
             from: process.env.EMAIL || 'lonkgoc@gmail.com',
@@ -51,18 +52,22 @@ Message: ${message}
                 content: req.file.buffer
             }] : []
         };
-        
+
+        console.log('Mail options:', mailOptions); // Debugging
+
         // Send email
-        await transporter.sendMail(mailOptions);
-        
-        res.status(200).json({ message: 'Form submitted successfully' });
+        await transporter.sendMail(mailOptions, (error, info) => { // Added callback
+            if (error) {
+                console.error('Error sending email:', error, error.stack);
+                return res.status(500).json({ message: 'Error submitting form' });
+            }
+            console.log('Email sent:', info.response);
+            res.status(200).json({ message: 'Form submitted successfully' });
+        });
+
+
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error:', error, error.stack); // Include stack trace
         res.status(500).json({ message: 'Error submitting form' });
     }
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
 });

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promoter Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <nav class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between">
+      <h1 class="text-xl font-bold">Promoter Dashboard</h1>
+      <div>
+        <a href="/chat.html" class="px-4 hover:underline">Chat</a>
+        <a href="/logout" class="px-4 hover:underline">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg fade-in">
+    <h2 class="text-2xl font-semibold mb-4">Available Campaigns</h2>
+    <div id="campaign-list" class="space-y-4"></div>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-4">My Campaigns</h2>
+    <div id="my-campaigns" class="space-y-4"></div>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-4">Feedback</h2>
+    <div id="feedback-list" class="space-y-4"></div>
+  </section>
+
+  <script>
+    // Middleware to check token
+    async function checkAuth() {
+      const token = localStorage.getItem('token');
+      if (!token) window.location.href = '/';
+      const response = await fetch('/api/verify', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!response.ok) {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }
+    }
+    checkAuth();
+
+    // Load Available Campaigns
+    async function loadCampaigns() {
+      const response = await fetch('/api/campaigns', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
+      const campaigns = await response.json();
+      const list = document.getElementById('campaign-list');
+      list.innerHTML = campaigns.map(c => `
+        <div class="p-4 bg-gray-50 rounded">
+          <h3 class="font-medium">${c.name}</h3>
+          <p>Product: ${c.product}, Budget: $${c.budget}, Platform: ${c.platform}</p>
+          <button onclick="applyToCampaign('${c._id}')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply</button>
+        </div>
+      `).join('');
+    }
+    loadCampaigns();
+
+    // Apply to Campaign
+    async function applyToCampaign(campaignId) {
+      const response = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        body: JSON.stringify({ campaignId })
+      });
+      if (response.ok) {
+        alert('Applied to campaign');
+        loadMyCampaigns();
+      }
+    }
+
+    // Load My Campaigns
+    async function loadMyCampaigns() {
+      const response = await fetch('/api/my-campaigns', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
+      const campaigns = await response.json();
+      const list = document.getElementById('my-campaigns');
+      list.innerHTML = campaigns.map(c => `
+        <div class="p-4 bg-gray-50 rounded">
+          <h3 class="font-medium">${c.name}</h3>
+          <p>Product: ${c.product}, Platform: ${c.platform}</p>
+        </div>
+      `).join('');
+    }
+    loadMyCampaigns();
+
+    // Load Feedback
+    async function loadFeedback() {
+      const response = await fetch('/api/feedback', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
+      const feedback = await response.json();
+      const list = document.getElementById('feedback-list');
+      list.innerHTML = feedback.map(f => `
+        <div class="p-4 bg-gray-50 rounded">
+          <p>${f.message}</p>
+          <p class="text-sm text-gray-500">Campaign: ${f.campaignName}</p>
+        </div>
+      `).join('');
+    }
+    loadFeedback();
+
+    // Logout
+    document.querySelector('a[href="/logout"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>
